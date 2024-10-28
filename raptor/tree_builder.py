@@ -269,6 +269,7 @@ class TreeBuilder:
             Tree: The golden tree structure.
         """
         chunks = split_text(text, self.tokenizer, self.max_tokens)
+        print("###### tree_builder.build_from_text")
         print(len(chunks), chunks[0])
         print("-"*100)
 
@@ -294,12 +295,11 @@ class TreeBuilder:
         logging.info("Building All Nodes")
 
         all_nodes = copy.deepcopy(leaf_nodes)
-        print(all_nodes)
+
+        print(self.num_layers)
         print("-"*100)
 
         root_nodes = self.construct_tree(all_nodes, all_nodes, layer_to_nodes)
-        print(self.num_layers)
-        print("-"*100)
 
         tree = Tree(all_nodes, root_nodes, leaf_nodes, self.num_layers, layer_to_nodes)
 

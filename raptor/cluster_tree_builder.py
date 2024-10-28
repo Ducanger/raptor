@@ -84,6 +84,9 @@ class ClusterTreeBuilder(TreeBuilder):
             with lock:
                 new_level_nodes[next_node_index] = new_parent_node
 
+        print("###### cluster_tree_builder.construct_tree")
+        print(self.num_layers)
+        print("-"*100)
         for layer in range(self.num_layers):
             print(layer)
 
@@ -107,7 +110,7 @@ class ClusterTreeBuilder(TreeBuilder):
                 reduction_dimension=self.reduction_dimension,
                 **self.clustering_params,
             )
-            print(cluster)
+            print(clusters)
 
             lock = Lock()
 
