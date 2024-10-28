@@ -142,11 +142,13 @@ class RAPTOR_Clustering(ClusteringAlgorithm):
         # Get the embeddings from the nodes
         embeddings = np.array([node.embeddings[embedding_model_name] for node in nodes])
 
+        print("###### cluster_tree_builder.construct_tree")
         # Perform the clustering
         clusters = perform_clustering(
             embeddings, dim=reduction_dimension, threshold=threshold
         )
-
+        print(clusters)
+        print(np.unique(np.concatenate(clusters)))
         # Initialize an empty list to store the clusters of nodes
         node_clusters = []
 
@@ -181,5 +183,6 @@ class RAPTOR_Clustering(ClusteringAlgorithm):
                 )
             else:
                 node_clusters.append(cluster_nodes)
+        print("-"*100)
 
         return node_clusters
