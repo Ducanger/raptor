@@ -85,12 +85,14 @@ class ClusterTreeBuilder(TreeBuilder):
                 new_level_nodes[next_node_index] = new_parent_node
 
         for layer in range(self.num_layers):
+            print(layer)
 
             new_level_nodes = {}
 
             logging.info(f"Constructing Layer {layer}")
 
             node_list_current_layer = get_node_list(current_level_nodes)
+            print(node_list_current_layer)
 
             if len(node_list_current_layer) <= self.reduction_dimension + 1:
                 self.num_layers = layer
@@ -105,6 +107,7 @@ class ClusterTreeBuilder(TreeBuilder):
                 reduction_dimension=self.reduction_dimension,
                 **self.clustering_params,
             )
+            print(cluster)
 
             lock = Lock()
 
@@ -136,9 +139,12 @@ class ClusterTreeBuilder(TreeBuilder):
                     )
                     next_node_index += 1
 
+            print(new_level_nodes)
             layer_to_nodes[layer + 1] = list(new_level_nodes.values())
             current_level_nodes = new_level_nodes
             all_tree_nodes.update(new_level_nodes)
+
+            print("-"*100)
 
             tree = Tree(
                 all_tree_nodes,

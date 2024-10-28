@@ -298,6 +298,8 @@ class TreeBuilder:
         print("-"*100)
 
         root_nodes = self.construct_tree(all_nodes, all_nodes, layer_to_nodes)
+        print(self.num_layers)
+        print("-"*100)
 
         tree = Tree(all_nodes, root_nodes, leaf_nodes, self.num_layers, layer_to_nodes)
 
